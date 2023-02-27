@@ -19,7 +19,27 @@
 
 const listaNomes = ['Jose', 'Maria', 'Luis', 'Carlos', 'Guilherme'];
 const Listarodutos = ['Teclado', 'Mouse', 'Monitor', 'Computador', 'Fone', 'Impressora', 'Scaner', 'WebCan']
-    // Forma errada de  manipular um conjunto de dados
+const listaProdutosJSON = {}
+    /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+    // -> elemento com chaves é um JSON
+    // trabalha com chave e valor
+    //chave x valor
+
+/*const produtos = {nome : "Teclado", cor: "Preto", quantidade : 50} 
+ * /////////////////////////////////////////////////////                JSON e array            ////////////////////////////////////////////////////////////////////
+ *
+ * const produtos ={
+ *                  [
+ *                      {nome : "Teclado", cor: "Preto", quantidade : 50},
+ *                      {nome : "Monitor", cor: "Preto", quantidade : 30},
+ *                      {nome : "Mouse", cor: "Preto", quantidade : 20}
+ *                  ] 
+ *                 }
+ */
+const produtos = {}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+// Forma errada de  manipular um conjunto de dados
 const nome1 = 'jose'
 const nome2 = 'Maria'
 const nome3 = 'Luis'
@@ -175,7 +195,7 @@ const FiltrandoElementos = function() {}
 // }
 
 const removendoElementos = function(array, nomeItem) { // essa função recebe um parametro, esse parametro é a palavra de pesquisa que ira no array e removera a palavraigual
-    let novaLsita = Array.slice(); // copia
+    let novaLsita = array.slice(); // copia
 
     let nome = nomeItem
     let status
@@ -197,6 +217,90 @@ const removendoElementos = function(array, nomeItem) { // essa função recebe u
 }
 
 
-console.log(removendoElementos(Listarodutos, 'Monitor'))
+// console.log(removendoElementos(Listarodutos, 'Teclado'))
 
-console.log(Listarodutos)
+// console.log(Listarodutos)
+
+/*------------------------------------------------------------------------------------------------------------------*/
+//////////////////////////////////////////////////////////////////////27/02/2023//////////////////////////////////////////////////////////////////////////////////////
+
+const listagemProdutos = function() {
+    let listaProdutosJSON = {};
+
+    let listProdutos = [
+        { nome: 'Teclado DELL', valor: 200, quantidade: 50 },
+        { nome: 'Monitor DELL', valor: 1000, quantidade: 70 },
+        { nome: 'Mouse DELL', valor: 100, quantidade: 350 }
+    ];
+
+    let listCores = ['Branco', 'Preto', 'Cinza'];
+    let listTipoTecados = ['Mecanico', 'Semi-Mecânico', 'Membrana'];
+    let listTipoMonitor = ['LCD', 'Full-HD', '4K', 'OLED'];
+
+    //entrando array  ListProdutos e, colocando no indice 0 com nome chave cores  recebe array de listCores
+    //adiciona chaves (opções) no teclado
+    listProdutos[0].cores = listCores
+    listProdutos[0].tipo = listTipoTecados
+
+    //adiciona chaves (opções) no Monitor
+    listProdutos[1].cores = listCores
+    listProdutos[1].tipo = listTipoMonitor
+
+    //adiciona chaves (opções) no Mouse
+    listProdutos[2].cores = listCores
+
+    //adiciona uma chave produtos e coloca toda a estrutura de produtos dentro dela
+    listaProdutosJSON.produtos = listProdutos
+        //console.log(listaProdutosJSON)
+        //percorrendo array apenas do Monitor dell
+        // console.log("nome: " + listaProdutosJSON.produtos[1].nome)
+        // console.log("valor : " + listaProdutosJSON.produtos[1].valor)
+        // console.log(" cor: " + listaProdutosJSON.produtos[1].cores[1])
+
+
+
+    //retorna todos os dadaos de produto (1° nível dos dados dos jason (nome quentidade, valor))
+    listaProdutosJSON.produtos.forEach(function(dadosProduto) {
+        console.log("nome:" + dadosProduto.nome)
+        console.log("valor: " + dadosProduto.valor)
+        console.log("cores: ")
+        if (dadosProduto.cores != undefined) {
+            //retorna todas as cores existentes para cada produto
+            dadosProduto.cores.forEach(function(dadosCores) {
+                console.log(" -  " + dadosCores)
+            })
+        }
+        //verificando se a chave tipo existir faz repetição
+        //validação para tratar quando não existe tipos de produtos
+        console.log("tipo")
+        if (dadosProduto.tipo != undefined) {
+            //retorna os tipos de cada produto
+            dadosProduto.tipo.forEach(function(dadosTipos) {
+                console.log(" -  " + dadosTipos)
+            })
+        } else {
+            console.log(" - não possui")
+        }
+
+
+        console.log("----------------------------")
+    })
+
+
+    //  listaProdutosJSON.produtos = 'Mouse'; // 
+    // listaProdutosJSON.cor = 'Preto'/  
+
+    // console.log(listaProdutosJSON)
+
+    // quando tem um jason com array
+    //
+    // listaProdutosJSON.produtos = Listarodutos // criando  nome chave(produtos) com array 
+    // listaProdutosJSON.clientes = listaNomes
+    // pegar um produto de array com Jason
+    //console.log(listaProdutosJSON.produtos[1]) // nome da variavel nome da chave e o indice
+    //console.log(listaProdutosJSON.clientes[2])
+    // console.log(listaProdutosJSON)
+
+}
+
+listagemProdutos();
